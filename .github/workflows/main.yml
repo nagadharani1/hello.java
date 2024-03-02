@@ -22,8 +22,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t your-ecr-repo-url:latest .
-          docker push your-ecr-repo-url:latest
+          docker build -t hellorepo:latest .
+          docker push hellorepo:latest
 
       - name: Update ECS service
         run: |
