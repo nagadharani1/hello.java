@@ -10,7 +10,7 @@ env:
   ECS_SERVICE: hellosevice # set this to your Amazon ECS service name
   ECS_CLUSTER: helloclus # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION:
-    hellotask # set this to the path to your Amazon ECS task definition
+    .github/hellotask # set this to the path to your Amazon ECS task definition
     # file, e.g. .aws/task-definition.json
   CONTAINER_NAME:
     container1 # set this to the name of the container in the
@@ -50,7 +50,7 @@ jobs:
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Fill in the new image ID in the Amazon ECS task definition
-        id: hellotask
+        id: .github/hellotask
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ./task-definition.json
