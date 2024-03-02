@@ -9,7 +9,7 @@ env:
   ECR_REPOSITORY: hellorepo           # set this to your Amazon ECR repository name
   ECS_SERVICE: hellosevice                 # set this to your Amazon ECS service name
   ECS_CLUSTER: helloclus                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: ./hellotask/task-definition.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: ecs-task-definition.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: container1           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
@@ -52,7 +52,7 @@ jobs:
       id: hellotask
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ./hellotask/task-definition.json
+        task-definition: ecs-task-definition.json
         container-name: container1
         image: ${{ steps.build-image.outputs.image }}
 
