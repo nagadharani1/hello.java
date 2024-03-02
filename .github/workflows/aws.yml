@@ -52,7 +52,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ecs-task-definition.json
+        task-definition: hellotask
         container-name: container1
         image: ${{ steps.build-image.outputs.image }}
 
