@@ -1,15 +1,17 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:153046341652:task-definition/hellotask:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellotaskdifinition:1",
     "containerDefinitions": [
         {
-            "name": "container1",
-            "image": "153046341652.dkr.ecr.us-east-1.amazonaws.com/hellorepo",
-            "cpu": 0,
+            "name": "hellocontainer",
+            "image": "153046341652.dkr.ecr.us-east-2.amazonaws.com/hellorepository",
+            "cpu": 1024,
+            "memory": 3072,
+            "memoryReservation": 1024,
             "portMappings": [
                 {
-                    "name": "80",
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "name": "hellocontainer-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -24,8 +26,8 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/hellotask",
-                    "awslogs-region": "us-east-1",
+                    "awslogs-group": "/ecs/hellotaskdifinition",
+                    "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
@@ -33,7 +35,7 @@
             "systemControls": []
         }
     ],
-    "family": "hellotask",
+    "family": "hellotaskdifinition",
     "taskRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -52,6 +54,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -75,7 +80,7 @@
         "FARGATE"
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "cpu": "1024",
     "memory": "3072",
@@ -83,7 +88,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-02T06:16:59.925Z",
+    "registeredAt": "2024-03-04T05:08:24.501Z",
     "registeredBy": "arn:aws:iam::153046341652:root",
     "tags": []
 }
