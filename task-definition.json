@@ -17,19 +17,7 @@
                 }
             ],
             "essential": true,
-            "entryPoint": [
-              "sh",
-              "-c"
-            ],
-            "command": [
-              "your command here"
-            ]
-    }
-  ]
-  
-  […]
-}    
-"environment": [],
+            "environment": [],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
