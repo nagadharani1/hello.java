@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellotaskdifinition:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellojavatask:1",
     "containerDefinitions": [
         {
             "name": "hellocontainer",
@@ -26,16 +26,22 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/hellotaskdifinition",
+                    "awslogs-group": "/ecs/hellojavatask",
                     "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
             },
-            "systemControls": []
+            "systemControls": [],
+            "resourceRequirements": [
+                {
+                    "value": "1",
+                    "type": "GPU"
+                }
+            ]
         }
     ],
-    "family": "hellotaskdifinition",
+    "family": "hellojavatask",
     "taskRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -76,11 +82,10 @@
     ],
     "placementConstraints": [],
     "compatibilities": [
-        "EC2",
-        "FARGATE"
+        "EC2"
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "1024",
     "memory": "3072",
@@ -88,7 +93,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-04T05:08:24.501Z",
+    "registeredAt": "2024-03-04T07:54:52.759Z",
     "registeredBy": "arn:aws:iam::153046341652:root",
     "tags": []
 }
