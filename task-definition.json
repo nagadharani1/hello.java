@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellojavatask:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellojavatask:3",
     "containerDefinitions": [
         {
             "name": "hellocontainer",
-            "image": "153046341652.dkr.ecr.us-east-2.amazonaws.com/hellorepository",
+            "image": "153046341652.dkr.ecr.us-east-2.amazonaws.com/hellorepository:cf07f7f024e3f9d432625e980db9fd0e9edd03dc",
             "cpu": 1024,
             "memory": 3072,
             "memoryReservation": 1024,
@@ -18,10 +18,8 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -29,8 +27,7 @@
                     "awslogs-group": "/ecs/hellojavatask",
                     "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
+                }
             },
             "systemControls": [],
             "resourceRequirements": [
@@ -45,7 +42,7 @@
     "taskRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 3,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -93,7 +90,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-04T07:54:52.759Z",
-    "registeredBy": "arn:aws:iam::153046341652:root",
+    "registeredAt": "2024-03-04T08:04:32.719Z",
+    "registeredBy": "arn:aws:iam::153046341652:user/cloudteam",
     "tags": []
 }
