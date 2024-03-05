@@ -5,10 +5,10 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: us-east-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: hellorepository           # set this to your Amazon ECR repository name
-  ECS_SERVICE: hellojavaservice                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: hellojavaclus                 # set this to your Amazon ECS cluster name
+  AWS_REGION: us-west-1                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: hellorepo1           # set this to your Amazon ECR repository name
+  ECS_SERVICE: helloservice1                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: helloclus1                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: task-definition.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: hellocontainer           # set this to the name of the container in the
@@ -29,7 +29,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+        aws-region: us-west-1
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -60,6 +60,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: hellojavaservice
-        cluster: hellojavaclus
+        service: helloservice1
+        cluster: helloclus1
         wait-for-service-stability: true
