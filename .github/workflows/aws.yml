@@ -6,12 +6,12 @@ on:
 
 env:
   AWS_REGION: us-west-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: hellorepo1           # set this to your Amazon ECR repository name
-  ECS_SERVICE: helloservice1                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: helloclus1                 # set this to your Amazon ECS cluster name
+  ECR_REPOSITORY: ecr-repository           # set this to your Amazon ECR repository name
+  ECS_SERVICE: ecsservice                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: dev-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .aws/task-definition.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: hellocontainer           # set this to the name of the container in the
+  CONTAINER_NAME: ecs-container           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
 
 
@@ -53,13 +53,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: .aws/task-definition.json
-        container-name: hellocontainer
+        container-name: ecscontainer
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: helloservice1
-        cluster: helloclus1
+        service: ecsservice
+        cluster: dev-cluter
         wait-for-service-stability: true
