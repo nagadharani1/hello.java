@@ -58,9 +58,10 @@ jobs:
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-            --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=false}"
+           
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: ecsservice
         cluster: dev-cluster
+         --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=false}"
         wait-for-service-stability: true
