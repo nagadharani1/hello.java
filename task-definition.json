@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:153046341652:task-definition/hellojavatask:3",
+    "taskDefinitionArn": "arn:aws:ecs:us-west-1:153046341652:task-definition/hellotask:1",
     "containerDefinitions": [
         {
             "name": "hellocontainer",
-            "image": "153046341652.dkr.ecr.us-east-2.amazonaws.com/hellorepository:cf07f7f024e3f9d432625e980db9fd0e9edd03dc",
+            "image": "153046341652.dkr.ecr.us-west-1.amazonaws.com/hellorepo1",
             "cpu": 1024,
             "memory": 3072,
             "memoryReservation": 1024,
@@ -18,16 +18,19 @@
             ],
             "essential": true,
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/hellojavatask",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-group": "/ecs/hellotask",
+                    "awslogs-region": "us-west-1",
                     "awslogs-stream-prefix": "ecs"
-                }
+                },
+                "secretOptions": []
             },
             "systemControls": [],
             "resourceRequirements": [
@@ -38,11 +41,11 @@
             ]
         }
     ],
-    "family": "hellojavatask",
+    "family": "hellotask",
     "taskRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::153046341652:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 3,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -90,7 +93,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-04T08:04:32.719Z",
-    "registeredBy": "arn:aws:iam::153046341652:user/cloudteam",
+    "registeredAt": "2024-03-05T05:53:33.284Z",
+    "registeredBy": "arn:aws:iam::153046341652:root",
     "tags": []
 }
