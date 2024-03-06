@@ -23,7 +23,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t myimg .
-          docker tag your-image-name:latest your-ecr-repository-uri:latest
+          docker tag myimg:latest 153046341652.dkr.ecr.us-west-1.amazonaws.com/ecsrepo
           docker push ecsrepo
 
       - name: Update ECS service
