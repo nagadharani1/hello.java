@@ -1,31 +1,44 @@
-name: ECS Deployment
+name: Deploy to Amazon ECS
 
 on:
   push:
     branches:
       - main
 
+env:
+  AWS_REGION: us-west-1
+  ECR_REPOSITORY: nodejs-apprepo     
+
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
 
-      - name: Build and push Docker image
-        run: |
-          docker build -t myimg .
-          docker tag myimg:latest 153046341652.dkr.ecr.us-west-1.amazonaws.com/ecsrepo
-          docker push ecsrepo
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
-      - name: Update ECS service
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          aws ecs update-service --ecsclus --service ecsservice --force-new-deployment
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
